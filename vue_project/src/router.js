@@ -10,7 +10,7 @@ let router = new Router({
     routes: [
         //Menu for admin page
         {
-            path: "/login",
+            path: "/",
             name: "login",
             component: () => import('@/views/login/Login.vue'),
         },
@@ -28,16 +28,21 @@ let router = new Router({
                     component: () => import('@/views/admin/dashboard/Index.vue')
                 },           
 
-                //Clients views
-                //----client----
+                //Client views
                 {
-                    path: "client", name: "client_grid",
-                    component: () => import('@/views/admin/client/Grid.vue')
-                },              
-                {
-                    path: "client/editorcrate/:id?", name: "client_form",
-                    component: () => import('@/views/admin/client/Form.vue')
-                }, 
+                    path: "client", name: "client",
+                    component: () => import('@/layouts/Intermediate.vue'),
+                    children: [
+                        {
+                            path: "/", name: "client_grid",
+                            component: () => import('@/views/admin/client/Grid.vue')
+                        },              
+                        {
+                            path: "editorcrate/:id?", name: "client_form",
+                            component: () => import('@/views/admin/client/Form.vue')
+                        },                         
+                    ]
+                },
 
             ]
         },

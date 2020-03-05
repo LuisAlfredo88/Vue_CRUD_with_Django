@@ -18,7 +18,7 @@ Vue.mixin({
         addNewRecord () {
             this.clearForm();
             var current_route = this.$route.path;
-            this.$router.push(current_route + '/editorcrate');
+            this.$router.push(current_route + '/editorcrate/');
         }
     },
 
