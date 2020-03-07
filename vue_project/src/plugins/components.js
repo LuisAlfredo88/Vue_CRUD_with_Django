@@ -10,6 +10,7 @@ import EmptyCard from '@/components/material/EmptyCard'
 import DataTable from '@/components/material/DataTable'
 import OptionsCard from '@/components/material/OptionsCard'
 import DatePicker from '@/components/material/DatePicker'
+import ImageUpload from '@/components/admin/core/ImageUpload'
 
 Vue.component(Offset.name, Offset)
 Vue.component(Card.name, Card)
@@ -22,3 +23,4 @@ Vue.component(ToolBox.name, ToolBox)
 Vue.component(DataTable.name, DataTable)
 Vue.component(OptionsCard.name, OptionsCard)
 Vue.component(DatePicker.name, DatePicker)
+Vue.component(ImageUpload.name, ImageUpload)

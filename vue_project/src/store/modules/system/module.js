@@ -1,5 +1,5 @@
 import INITIAL_STATE from './initial_state';
-import api from '@/store/api'
+import API from './api'
 
 export const state = {
     //Snackbar messages
@@ -81,5 +81,10 @@ export const actions = {
 
     addModalRef({commit}, modal) {
         commit('addModalRef', modal);
+    },
+
+    async uploadFile ({}, file_object) {
+        const response  = await API.uploadFile(file_object).catch((e)=>{ return Promise.reject(e) });
+        return Promise.resolve(response);
     }
 };

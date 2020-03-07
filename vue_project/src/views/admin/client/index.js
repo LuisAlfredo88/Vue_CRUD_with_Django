@@ -1,4 +1,5 @@
-const AUTH_MODULE = 'client';
+const CLIENT_MODULE = 'client';
+const SYSTEM_MODULE = 'system';
 import {mapActions, mapMutations } from 'vuex'
 
 export default {
@@ -8,15 +9,27 @@ export default {
 
     methods: {
         ...mapActions({
-            saveEntity: AUTH_MODULE + '/save',
-            get: AUTH_MODULE + '/get',
-            getAll: AUTH_MODULE + '/getAll',
-            delete: AUTH_MODULE + '/delete',
+            saveEntity: CLIENT_MODULE + '/save',
+            get: CLIENT_MODULE + '/get',
+            getAll: CLIENT_MODULE + '/getAll',
+            delete: CLIENT_MODULE + '/delete',
+            uploadFile: SYSTEM_MODULE + '/uploadFile'
         }),
 
         ...mapMutations ({
-            clearForm: AUTH_MODULE + '/clearForm'
+            clearForm: CLIENT_MODULE + '/clearForm'
         }),
+
+        async loadProfilePhoto (file) {
+            this.loading = true;
+            const response = await this.uploadFile(file).catch((e)=>{ this.logError(e) });
+            
+            if(response){
+                this.form.photo_url = response.file;
+            }
+
+            this.loading = false;
+        },
 
         validate () {
             if(!this.form.name){
@@ -52,7 +65,7 @@ export default {
         },
 
         editRecord (row) {
-            this.$router.push(AUTH_MODULE + '/editorcrate/' + row.id);
+            this.$router.push(CLIENT_MODULE + '/editorcrate/' + row.id);
         },
 
         async deleteRecord (row) {

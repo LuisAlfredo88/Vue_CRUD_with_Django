@@ -96,8 +96,13 @@ export default {
 	},
 
 	uploadFile: (url, file_object) => {
-		var form_data = new FormData();
-		form_data.append("image", file_object.files[0]);
+        var form_data = new FormData();
+        var files = file_object.files;
+
+        for(var i = 0; i < files.length; i++){
+            form_data.append("file", files[i]);
+        }
+
 		axios.post(url, form_data, {
 			headers: {
 				'Content-Type': 'multipart/form-data'

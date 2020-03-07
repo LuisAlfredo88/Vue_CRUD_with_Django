@@ -10,7 +10,7 @@ let router = new Router({
     routes: [
         //Menu for admin page
         {
-            path: "/",
+            path: "/login",
             name: "login",
             component: () => import('@/views/login/Login.vue'),
         },

@@ -13,7 +13,15 @@
                         color="blue"
                         icon="mdi-account"
                         :title="$t('client_info')"
-                    >    
+                    >   
+
+                        <v-row class="photo-container">
+                            <v-col cols="auto">
+                                <h3>{{ $t('photo') }}</h3>
+                                <image-upload type='photo' :multiple="false" v-on:change="loadProfilePhoto" :image_url="form.photo_url" />
+                            </v-col>
+                        </v-row>
+
                         <v-text-field
                             :label="$t('identification')"
                             required
@@ -52,7 +60,7 @@
     import FormUtils from '@/mixins/form_utils'
     import FormMixin from './index'
 
-    const AUTH_MODULE = 'client';
+    const CLIENT_MODULE = 'client';
 
     export default {
         mixins: [FormUtils, FormMixin],
@@ -69,7 +77,20 @@
         },
 
         computed: {
-            ...mapState(AUTH_MODULE, ['form']),
-        },        
+            ...mapState(CLIENT_MODULE, ['form']),
+        },      
+        
+        methods: {
+
+        }
     }
 </script>
+
+<style lang="scss" scoped>
+    .photo-container{
+        h3{
+            text-align: left !important;
+            margin-bottom: 10px;
+        }
+    }
+</style>

@@ -19,7 +19,8 @@
                             hide-details
                             clearable
                         ></v-text-field>
-                    </div>                   
+                    </div>
+
                     <material-data-table
                         :headers="default_grid_headers"
                         :data="all_records"
@@ -27,10 +28,14 @@
                         :loading="loading"
                         :pagination="records_config.pagination"
                         :total_rows="records_config.total_rows"
-                        @onDelete="deleteRecord"
-                        @onEdit="editRecord"
                     >
-                    </material-data-table>                    
+                        <template v-slot:actions="item">
+                            <span class="actions" v-on:click="()=>{ editRecord(item)}">
+                                <i class="mdi mdi-pencil action"></i>
+                            </span>
+                        </template>
+                    </material-data-table>
+
                 </grid-card>
             </v-col>
         </v-row>
